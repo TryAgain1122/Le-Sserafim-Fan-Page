@@ -4,9 +4,11 @@ import HeaderGallery from "../components/HeaderGallery"
 import { useState } from "react"
 
 const Gallery = () => {
-  const [selectCategory, setSelectedCategory] = useState<string>('all');
+  const [selectCategory, setSelectedCategory] = useState<Category>('all');
 
-  const handleSelectedCategory = (category: string) => {
+  type Category = 'all' | 'yunjin' | 'chaewoon' | 'sakura' | 'eunchae' | 'kazuha'
+
+  const handleSelectedCategory = (category: Category) => {
     setSelectedCategory(category)
   }
   return (
@@ -19,7 +21,7 @@ const Gallery = () => {
       className="bg-gradient-to-r from-violet-400 to-purple-300 min-h-screen"
     >
       <HeaderGallery onSelectCategory={handleSelectedCategory}/>
-      <PhotoGallery />
+      <PhotoGallery selectedCategory={selectCategory}/>
     </motion.div>
     
   )

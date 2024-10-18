@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const {nextui} = require("@nextui-org/react");
 export default {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +8,7 @@ export default {
  
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -22,6 +24,6 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [nextui()],
 }
 

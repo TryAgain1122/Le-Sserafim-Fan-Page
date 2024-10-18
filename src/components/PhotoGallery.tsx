@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { photoGalleryImage } from "../data";
+import {Image} from "@nextui-org/react";
+
+interface Photo {
+  img: string;
+}
 
 interface PhotoGalleryProps {
-  selectedCategory: string;
+  selectedCategory: keyof typeof photoGalleryImage;
 }
 
 const container = {
@@ -23,13 +28,15 @@ const item = {
   visible: { y: 0, opacity: 1 },
 };
 
-const PhotoGallery = ({ selectedCategory }:PhotoGalleryProps) => {
+const PhotoGallery = ({ selectedCategory }: PhotoGalleryProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<null | string>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const photos = photoGalleryImage[selectedCategory] || photoGalleryImage.all;
 
   // Split the images into four columns
   const columns: Photo[][] = [[], [], [], []];
-  photoGalleryImage.forEach((photo, index) => {
+  photos.forEach((photo, index) => {
     columns[index % 4].push(photo);
   });
 
@@ -50,10 +57,14 @@ const PhotoGallery = ({ selectedCategory }:PhotoGalleryProps) => {
                   key={index}
                   layoutId={`photo-${index}`}
                   className="overflow-hidden cursor-pointer rounded-lg"
-                  onClick={() => setSelectedPhoto(photo.img)}
+                  onClick={() => {
+                    setIsLoading(true);
+                    setSelectedPhoto(photo.img);
+                  }}
                   variants={item}
                 >
-                  <img
+                  <Image
+                    isZoomed
                     src={photo.img}
                     alt={photo.img}
                     className="h-auto max-w-full rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.1] object-cover"
@@ -78,6 +89,11 @@ const PhotoGallery = ({ selectedCategory }:PhotoGalleryProps) => {
               layoutId={`photo-${selectedPhoto}`}
               className="relative max-w-full max-h-full p-4"
             >
+              {isLoading && (
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
+                  <span className="text-white">Loading...</span>
+                </div>
+              )}
               <motion.img
                 src={selectedPhoto}
                 alt="Selected"
@@ -86,6 +102,8 @@ const PhotoGallery = ({ selectedCategory }:PhotoGalleryProps) => {
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
+                onLoad={() => setIsLoading(false)} // Set loading state to false when the image loads
+                onError={() => setIsLoading(false)} // Optionally handle error case
               />
             </motion.div>
 
