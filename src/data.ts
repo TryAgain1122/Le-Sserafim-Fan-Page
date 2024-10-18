@@ -36,7 +36,7 @@ export const videos = [
 export const images = [
     {
         id: 'yunjin-details-1',
-        src: '/assets/yunjin5.jpg'
+        src: '/assets/yunjin.jpg'
     },
     {
         id: 'sakura-miyawaki-2',
@@ -48,7 +48,7 @@ export const images = [
     }, 
     {
         id: 'hong-eunchae-4',
-        src: '/assets/Eunchae.jpg'
+        src: '/assets/eunchae.jpg'
     }, 
     {
         id: 'kim-chaewoon-5',

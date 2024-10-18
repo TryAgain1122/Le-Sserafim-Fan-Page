@@ -109,7 +109,7 @@ const PhotoGallery = ({ selectedCategory }: PhotoGalleryProps) => {
 
             {/* Close button */}
             <motion.button
-              className="fixed top-4 right-4 px-4 py-2 bg-white text-black rounded-lg z-10"
+              className="fixed top-4 right-4 px-4 py-2 bg-white text-black rounded-lg z-100"
               onClick={() => setSelectedPhoto(null)}
               whileHover={{ scale: 1.1 }}
             >

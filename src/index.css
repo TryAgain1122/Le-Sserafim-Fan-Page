@@ -6,6 +6,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes bounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .bounce-animation {
+    animation: bounce 0.3s ease;
+  }
+  
 .slide-in {
     animation: slideIn 0.5s ease forwards;
 }

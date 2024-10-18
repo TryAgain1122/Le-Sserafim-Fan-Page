@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import Awards from "../components/Awards";
 import Content from "../components/Content";
 import Debut from "../components/Debut";
@@ -6,7 +6,7 @@ import HeroSection from "../components/HeroSection";
 import Members from "../components/Members";
 import Music from "../components/Music";
 import { motion } from "framer-motion";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 // Define animation variants
 const pageVariants = {
@@ -32,16 +32,16 @@ const pageVariants = {
 };
 
 const About = () => {
-  const [textColor, setTextColor] = useState('text-black');
+  // const [textColor, setTextColor] = useState('text-black');
 
-  useEffect(() => {
-    const backgroundColor = "white";
-    if (backgroundColor === "white") {
-      setTextColor("text-black")
-    } else {
-      setTextColor("text-white")
-    }
-  },[])
+  // useEffect(() => {
+  //   const backgroundColor = "white";
+  //   if (backgroundColor === "white") {
+  //     setTextColor("text-black")s
+  //   } else {
+  //     setTextColor("text-white")
+  //   }
+  // },[])
   return (
     <motion.div
       className="relative min-h-screen overflow-hidden bg-white"
@@ -50,7 +50,7 @@ const About = () => {
       exit="exit"
       variants={pageVariants} // Apply the animation variants
     >
-      <Navbar textColor={textColor}/>
+      {/* <Navbar textColor={textColor}/> */}
       {/* Background Gradient */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         {/* Decorative Blurred Circle */}
